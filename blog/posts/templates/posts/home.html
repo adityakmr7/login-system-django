@@ -1,0 +1,14 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+    {% comment %} <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}"/> {% endcomment %}
+    <h2><a href="#">
+    {{post.title}}</h2>
+    </a>
+    <p>By <a href="#">
+     {{post.author}} 
+    </a> on {{post.date_posted|date:"F d, Y"}}</p>
+    <p>{{post.content}}</p>
+    {% endfor %}
+{% endblock content %}}
