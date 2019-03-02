@@ -16,13 +16,13 @@
 <body>
     {% include "posts/navbar.html" %}
     <div class="container">
-        {% comment %} {% if messages %}
+        {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{message.tags}}">
                     {{message}}
                 </div>
             {% endfor %}
-        {% endif %} {% endcomment %}
+        {% endif %}
         {% block content %}
         {% endblock %}
     </div>
