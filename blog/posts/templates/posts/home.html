@@ -2,10 +2,13 @@
 
 {% block content %}
     {% for post in posts %}
-    {% comment %} <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}"/> {% endcomment %}
-    <h2><a href="{% url 'posts-detail' post.id%}">
+    {% if post.image %}
+        <img class="img-thumbnail" src="{{post.image.url}}"/>
+    {% endif %}
+    <h2><a href="{% url 'posts-detail' post.slug%}">
     {{post.title}}</h2>
     </a>
+    <p>Category: {{post.category}}</p>
     <p>By <a href="#">
      {{post.author}} 
     </a> on {{post.date_posted|date:"F d, Y"}}</p>
