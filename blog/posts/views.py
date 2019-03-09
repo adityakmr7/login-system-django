@@ -20,8 +20,8 @@ class PostView(ListView):
       context['latest_posts'] = Post.objects.order_by('-date_posted')[0:5]
       return context
 
-   def get_success_url(self):
-       return reverse('home') #add your path
+   # def get_success_url(self):
+   #     return reverse('home') #add your path
 
 
 class PostDetailView(LoginRequiredMixin,DetailView):
