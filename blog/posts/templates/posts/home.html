@@ -1,17 +1,17 @@
 {% extends "posts/base.html" %}
 
 {% block content %}
-    {% for post in posts %}
-    {% if post.image %}
-        <img class="img-thumbnail" src="{{post.image.url}}"/>
-    {% endif %}
-    <h2><a href="{% url 'posts-detail' post.slug%}">
-    {{post.title}}</h2>
-    </a>
-    <p>Category: {{post.category}}</p>
-    <p>By <a href="#">
-     {{post.author}} 
-    </a> on {{post.date_posted|date:"F d, Y"}}</p>
-    <p>{{post.content}}</p>
+    {% for post in latest_posts %}
+        <h1>{{post.title}}</h1>
     {% endfor %}
+
+    {% for ct in all_categs %}
+<div>
+    <div> {{ct.title}} </div>
+    {% for post in ct.postcategory.all %}
+       <p> {{post.title}} </p>
+      
+    {% endfor %}
+ </div>
+{% endfor %}
 {% endblock content %}}

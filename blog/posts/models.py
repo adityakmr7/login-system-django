@@ -15,13 +15,13 @@ class Category(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = 'categories'
     def __unicode__(self):
         return self.title
     
     def __str__(self):
         return self.title
-
-
 
 class Post(models.Model):
     title = models.CharField(max_length=120)
@@ -31,7 +31,7 @@ class Post(models.Model):
         null=True, 
         blank=True,
     )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='postcategory')
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
