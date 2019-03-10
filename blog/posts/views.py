@@ -13,11 +13,14 @@ class PostView(ListView):
    context_object_name = 'all_categs'
 
    def get_queryset(self):
-       return Category.objects.all()
+      if not self.request.user.is_authenticated:        
+         return Category.objects.all()[0:6]
+      else:
+         return Category.objects.all()
    
    def get_context_data(self):
       context = super(PostView, self).get_context_data()
-      context['latest_posts'] = Post.objects.order_by('-date_posted')[0:5]
+      context['latest_posts'] = Post.objects.order_by('-date_posted')[0:8]
       return context
 
    # def get_success_url(self):

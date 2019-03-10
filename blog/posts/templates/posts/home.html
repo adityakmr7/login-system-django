@@ -1,17 +1,76 @@
 {% extends "posts/base.html" %}
 
 {% block content %}
-    {% for post in latest_posts %}
-        <h1>{{post.title}}</h1>
-    {% endfor %}
 
-    {% for ct in all_categs %}
-<div>
-    <div> {{ct.title}} </div>
+<div class="contianer">
+    <div class="latest_post-title row">
+        <div class="col-lg-6">
+            <h3>Latest</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="col-lg-6">
+            <a class="float-right" href="#">See More</a>
+        </div>
+    <div><!--latest_Post-title-->
+</div>
+<div class="container latest_post-wrapper py-1">    
+    <div class="row py-3">
+{% for post in latest_posts %}
+        <div class="col-lg-4" style="padding-bottom: 2rem;">
+            <a href="{{post.get_absolute_url}}">
+            <div class="card p-2 shadow" style="width: 22rem; height: 30rem;">
+                <img src="{{post.image.url}}" class="card-img-top" alt="{{post.title}}">
+                <div class="card-body">
+                    <small class="text-muted h6">{{post.category}}</small>
+                    <blockquote class="blockquote">
+                        <p class="mb-0">{{post.title}}</p>
+                        <footer class="blockquote-footer">written By<cite title="Source Title">{{posts.author}}</cite></footer>
+                    </blockquote>
+                    <hr/>
+                    <div class="d-flex flex-row py-0">
+                        <small class="text-muted mr-auto">{{post.date_posted}}</small>
+                        <p><i class="fas fa-share-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div><!--col-lg-4-->
+{% endfor %}
+    </div><!--row-py-3-->
+</div><!--container.latest_post-wrapper-->
+    
+{% for ct in all_categs %}
+<div class="container latest_post-wrapper py-1">
+    <div class="latest_post-title row">
+        <div class="col-lg-6">
+            <h3>{{ct.title}}</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="col-lg-6">
+            <a class="float-right" href="#">See More</a>
+        </div>
+    <div><!--latest_Post-title-->    
+    <div class="row py-3">
     {% for post in ct.postcategory.all %}
-       <p> {{post.title}} </p>
-      
+        <div class="col-lg-4" style="padding-bottom: 2rem;" >
+            <div class="card p-2 shadow" style="width: 22rem; height: 30rem">
+                <img src="{{post.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <small class="text-muted h6">{{post.category}}</small>
+                    <blockquote class="blockquote">
+                        <p class="mb-0">{{post.title}}</p>
+                        <footer class="blockquote-footer">written By<cite title="Source Title">{{posts.author}}</cite></footer>
+                    </blockquote>
+                    <hr/>
+                    <div class="d-flex flex-row py-0">
+                        <small class="text-muted mr-auto">{{post.date_posted}}</small>
+                        <p><i class="fas fa-share-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div><!--col-lg-4-->
     {% endfor %}
- </div>
+    </div><!--row-py-3-->
+</div><!--container.latest_post-wrapper-->
 {% endfor %}
 {% endblock content %}}
