@@ -53,6 +53,7 @@
     <div class="row py-3">
     {% for post in ct.postcategory.all %}
         <div class="col-lg-4" style="padding-bottom: 2rem;" >
+        <a href="{{post.get_absolute_url}}">
             <div class="card p-2 shadow" style="width: 22rem; height: 30rem">
                 <img src="{{post.image.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -68,6 +69,7 @@
                     </div>
                 </div>
             </div>
+        </a>
         </div><!--col-lg-4-->
     {% endfor %}
     </div><!--row-py-3-->
