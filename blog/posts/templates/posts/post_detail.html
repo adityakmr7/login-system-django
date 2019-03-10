@@ -1,15 +1,25 @@
 {% extends "posts/base.html" %}
 
 {% block content %}
-    <h2>{{object.title}}</h2>
-    {{request.build_absolute_uri}}
-    <p>By
-     {{object.author}} 
-    </a> on {{object.date_posted|date:"F d, Y"}}</p>
-    <p>{{object.content}}</p>
-    <div class="fb-like" data-href="{{request.build_absolute_uri}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-    <div>
-        <p class="lead">Comments</p>
-        <div class="fb-comments"></div>
+    <div class="container">
+        <a  href="#">{{object.category}}</a>
+        <div>
+            {{request.build_absolute_uri}}
+            <h2>{{object.title}}</h2>
+            <small class="text-muted">By: {{object.author}}</small>
+            <small class="text-muted">On: {{object.date_posted}}</small>
+            <hr/>
+            <div class="fb-like" data-href="{{request.build_absolute_uri}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            <div>
+                <img class="img-fluid" src="{{object.image.url}}" alt=""/>
+            </div>
+            <div>
+                <p class="h4">{{object.content}}</p>
+            </div>
+            <div>
+                <p class="lead">Comments</p>
+                <div class="fb-comments"></div>
+            </div>
+        </div>
     </div>
 {% endblock content %}}

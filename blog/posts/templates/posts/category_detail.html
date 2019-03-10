@@ -1,0 +1,13 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+    <h2>{{object.title}}</h2>
+    {{request.build_absolute_uri}}
+    <p>By
+     {{object.author}} 
+    </a> on {{object.date_posted|date:"F d, Y"}}</p>
+    <p>{{object.content}}</p>
+    {% for post in posts  %}
+        {{post.title}}
+    {% endfor %}
+{% endblock content %}}
