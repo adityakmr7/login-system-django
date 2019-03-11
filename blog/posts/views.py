@@ -22,7 +22,7 @@ class PostView(ListView):
       if not self.request.user.is_authenticated:   
          fcategory = Category.objects.get(title__iexact = 'Featured')        
          context = super(PostView, self).get_context_data()
-         context['latest_posts'] = Post.objects.order_by('-date_posted')[0:6]
+         context['latest_posts'] = Post.objects.exclude(category= fcategory).order_by('-date_posted')[0:6]
          context['featured_posts'] = Post.objects.all().filter(category= fcategory).order_by('-date_posted')[0:6]
          return context
       else:
@@ -36,17 +36,23 @@ class PostView(ListView):
    #     return reverse('home') #add your path
 
 
+class LatestPostView(LoginRequiredMixin, ListView):
+   template_name = 'posts/post_latest.html'
+   model = Post
+   context_object_name = 'Posts'
+   ordering = ['-date_posted']
+   paginate_by = 6
+
+
 class PostDetailView(LoginRequiredMixin,DetailView):
     model = Post
     template_name = 'posts/post_detail.html'
 
    
 
-class CategoryDetailView(LoginRequiredMixin, DetailView):
+class CategoryPostListView(LoginRequiredMixin, ListView):
    model = Category
    template_name = 'posts/category_detail.html'
 
-   # def get_context_data(self):
-   #    context = super(PostView, self).get_context_data()
-   #    context['posts'] = Post.objects.order_by('-date_posted')
-   #    return context
+   # def get_query_set(self):
+   #    category = get_object_or_404(Category, )
