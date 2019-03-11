@@ -16,16 +16,21 @@ class PostView(ListView):
       if self.request.user.is_authenticated:        
          return Category.objects.all()
       else:
-         return Category.objects.all()[:6]
+         return Category.objects.all().exclude(title__iexact = 'Featured')[:6]
    
    def get_context_data(self):
-      if not self.request.user.is_authenticated:           
+      if not self.request.user.is_authenticated:   
+         fcategory = Category.objects.get(title__iexact = 'Featured')        
          context = super(PostView, self).get_context_data()
          context['latest_posts'] = Post.objects.order_by('-date_posted')[0:6]
+         context['featured_posts'] = Post.objects.all().filter(category= fcategory).order_by('-date_posted')[0:6]
          return context
       else:
+         fcategory = Category.objects.get(title__iexact = 'Featured') 
          context = super(PostView, self).get_context_data()
          context['latest_posts'] = Post.objects.order_by('-date_posted')
+         context['featured_posts'] = Post.objects.all().filter(category= fcategory).order_by('-date_posted')[0:6]
+         context['featured_posts'] = Post.objects.get(category = 'featured').order_by('-date_posted')[0:3]
          return context
          
    # def get_success_url(self):
