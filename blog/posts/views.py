@@ -30,7 +30,6 @@ class PostView(ListView):
          context = super(PostView, self).get_context_data()
          context['latest_posts'] = Post.objects.order_by('-date_posted')
          context['featured_posts'] = Post.objects.all().filter(category= fcategory).order_by('-date_posted')[0:6]
-         context['featured_posts'] = Post.objects.get(category = 'featured').order_by('-date_posted')[0:3]
          return context
          
    # def get_success_url(self):
