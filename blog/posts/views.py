@@ -51,8 +51,16 @@ class PostDetailView(LoginRequiredMixin,DetailView):
    
 
 class CategoryPostListView(LoginRequiredMixin, ListView):
-   model = Category
-   template_name = 'posts/category_detail.html'
+   model = Post
+   template_name = 'posts/category_detail.html' 
+   context_object_name= 'posts'
+   paginate_by = 6
 
    # def get_query_set(self):
-   #    category = get_object_or_404(Category, )
+   #    category = get_object_or_404(Category, slug=self.kwargs['slug'])
+   #    return super(CategoryPostListView, self).get_queryset().filter(category=category)
+  
+   def get_queryset(self):
+      category = get_object_or_404(Category, slug=self.kwargs['slug'])
+      return Post.objects.filter(category=category)
+      

@@ -31,13 +31,13 @@
 </div>
 {%endif %}
 <div class="contianer py-5">
-    <div class="latest_post-title row">
+    <div class="latest_post-title row" style="width: 80%; margin: 0 auto;">
         <div class="col-lg-6">
             <h3>Latest</h3>
             <p>Lorem ipsum dolor sit amet.</p>
         </div>
         <div class="col-lg-6">
-            <a class="float-right" href="#">See More</a>
+            <a class="float-right" href="{%url 'posts-latest'%}">See More</a>
         </div>
     <div><!--latest_Post-title-->
 </div>
@@ -75,7 +75,7 @@
             <p>Lorem ipsum dolor sit amet.</p>
         </div>
         <div class="col-lg-6">
-            <a class="float-right" href="#">See More</a>
+            <a class="float-right" href="{%url 'category-detail' slug=ct.slug %}">See More</a>
         </div>
     <div><!--latest_Post-title-->    
     <div class="row py-3">
