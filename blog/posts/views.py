@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-#from django.contrib.auth.models import User
-# Create your views here.posts = [
+
 from django.shortcuts import redirect, render,get_object_or_404
 
 #class based view
@@ -31,10 +30,6 @@ class PostView(ListView):
          context['latest_posts'] = Post.objects.order_by('-date_posted')
          context['featured_posts'] = Post.objects.all().filter(category= fcategory).order_by('-date_posted')[0:6]
          return context
-         
-   # def get_success_url(self):
-   #     return reverse('home') #add your path
-
 
 class LatestPostView(LoginRequiredMixin, ListView):
    template_name = 'posts/post_latest.html'

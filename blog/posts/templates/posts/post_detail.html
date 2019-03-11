@@ -2,9 +2,8 @@
 
 {% block content %}
     <div class="container">
-        <a  href="#">{{object.category}}</a>
+        <a  href="{% url 'category-detail' slug=object.category.slug %}">{{object.category}}</a>
         <div>
-            {{request.build_absolute_uri}}
             <h2>{{object.title}}</h2>
             <small class="text-muted">By: {{object.author}}</small>
             <small class="text-muted">On: {{object.date_posted}}</small>
