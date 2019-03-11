@@ -2,6 +2,7 @@
 
 {% block content %}
 
+{% if not user.is_authenticated %}
 <div class="container pt-5 mh-50">
     <div class="bd-example">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -28,8 +29,8 @@
         </div>
     </div>
 </div>
-
-<div class="contianer">
+{%endif %}
+<div class="contianer py-5">
     <div class="latest_post-title row">
         <div class="col-lg-6">
             <h3>Latest</h3>
